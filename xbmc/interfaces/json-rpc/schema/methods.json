@@ -1947,6 +1947,16 @@
     ],
     "returns": "string"
   },
+  "VideoLibrary.Import": {
+    "type": "method",
+    "description": "Imports all items from a single file into the video library",
+    "transport": "Response",
+    "permission": "UpdateData",
+    "params": [
+      { "name": "directory", "type": "string", "default": "", "description": "Path to the directory with the videodb.xml to import from" }
+    ],
+    "returns": "string"
+  },
   "VideoLibrary.Clean": {
     "type": "method",
     "description": "Cleans the video library for non-existent items",
