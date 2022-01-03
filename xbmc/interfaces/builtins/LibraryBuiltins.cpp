@@ -311,11 +311,20 @@ static int ImportLibrary(const std::vector<std::string>& params)
     return -1;
   std::string path = params[1];
 
-  CVideoDatabase videodatabase;
-  videodatabase.Open();
-  videodatabase.ImportFromXML(path);
-  videodatabase.Close();
-
+  if (StringUtils::EqualsNoCase(params[0], "music"))
+  {
+    // Export music library (not showing progress dialog)
+    path = URIUtils::AddFileToFolder(path, "musicdb.xml");
+    CMusicLibraryQueue::GetInstance().ImportLibrary(path, false);
+  }
+  else
+  {
+    // Export video library
+    CVideoDatabase videodatabase;
+    videodatabase.Open();
+    videodatabase.ImportFromXML(path);
+    videodatabase.Close();
+  }
   return 0;
 }
 
